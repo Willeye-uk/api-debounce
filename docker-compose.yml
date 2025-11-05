@@ -1,12 +1,10 @@
-version: '3.8'
-
 services:
   lucee:
     image: lucee/lucee:latest
     ports:
-      - "8080:8080"
+      - "8080:8888"
     volumes:
-      - .:/app
+      - .:/var/www
     environment:
       - LUCEE_ENV=production
     networks:

@@ -4,6 +4,8 @@ FROM lucee/lucee:latest
 # Set the working directory
 WORKDIR /var/www
 
+ENV LUCEE_LOGGING_FORCE_APPENDER=console
+ENV LUCEE_LOGGING_FORCE_LEVEL=info
 # Copy the application files into the container
 COPY . .
 
