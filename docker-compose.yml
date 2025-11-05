@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  lucee:
+    image: lucee/lucee:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - .:/app
+    environment:
+      - LUCEE_ENV=production
+    networks:
+      - debounce-network
+
+networks:
+  debounce-network:
+    driver: bridge
