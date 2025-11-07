@@ -1,0 +1,22 @@
+# Use a lightweight base image
+FROM debian:stable-slim
+
+# Install cron and curl
+RUN apt-get update && \
+    apt-get install -y cron curl && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy the crontab file into the correct location
+COPY crontab /etc/cron.d/my-lucee-task
+
+# Set proper permissions for the crontab file
+RUN chmod 0644 /etc/cron.d/my-lucee-task
+
+# Ensure the cron job is loaded (optional if using /etc/cron.d, but safe)
+RUN crontab /etc/cron.d/my-lucee-task
+
+# Create the log file (required if the crontab redirects output to it)
+RUN touch /var/log/cron.log
+
+# Run cron in the foreground (-f) to keep the container alive and monitor logs
+CMD ["cron", "-f"]

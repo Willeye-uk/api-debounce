@@ -1,0 +1,4 @@
+# m h dom mon dow user command
+*/1 * * * * curl -s http://lucee:8888/api/out >> /var/log/cron.log 2>&1
+# Note: Using port 8888 (the internal port) and the service name 'lucee'
+# The cron job will run as 'root' by default in the new container.

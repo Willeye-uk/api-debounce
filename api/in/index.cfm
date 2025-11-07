@@ -1,11 +1,11 @@
 <cfscript>
 
-if (isDefined(form.data) && isDefined(form.id)) {
+if (isDefined('form.data') && isDefined('form.id')) {
 
-    var xKey = form.id;
-    var data = form.data;
+    xKey = form.id;
+    data = form.data;
 
-    var filePath = expandPath("/jsontemp/" & xKey & ".json");
+    filePath = expandPath("/jsontemp/" & xKey & ".json");
 
     // Write data to file (overwrites if exists)
     fileWrite(filePath, data);

@@ -10,6 +10,19 @@ services:
     networks:
       - debounce-network
 
+  # --- New Cron Service Definition ---
+  cron-worker:
+    build:
+      context: ./cron-worker # Points to the directory with the new Dockerfile
+      dockerfile: DockerFile
+    container_name: lucee-api-scheduler
+    # Connect it to the same network so it can talk to 'lucee' service
+    networks:
+      - debounce-network
+    # Important: Set a restart policy to ensure the cron job is always running
+    restart: always 
+    # Optional: Keep the image lightweight by not needing the code volume
+    
 networks:
   debounce-network:
     driver: bridge

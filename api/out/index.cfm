@@ -3,12 +3,12 @@
 //find all files older than 5 minutes loop over and send to next hop
 var dirPath = expandPath("/jsontemp/");
 var files = directoryList(dirPath, false, "name", "*.json");
-var now = getTickCount();
+//var now = getTickCount();
 
 try {
 
     for (var file in files) {
-    var fileAgeMinutes = dateDiff("n", file.dateLastModified, now);
+    var fileAgeMinutes = dateDiff("n", file.dateLastModified, now());
     if (fileAgeMinutes >= 5) {
         // Read file content
         var filePath = dirPath & "/" & file.name;
