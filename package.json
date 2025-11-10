@@ -1,0 +1,16 @@
+{
+  "name": "debounce-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "newman run tests/collections/hello.postman_collection.json -e tests/environments/dev.postman_environment.json"
+  },
+  "dependencies": {
+    "newman": "^5.3.0"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
