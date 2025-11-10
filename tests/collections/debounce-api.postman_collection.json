@@ -1,0 +1,171 @@
+{
+  "info": {
+    "name": "Debounce API - /api/in/ Tests",
+    "description": "Test collection for POST /api/in/ endpoint",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Test 1: Successful POST with id and data",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "id",
+              "value": "test123",
+              "type": "text"
+            },
+            {
+              "key": "data",
+              "value": "{\"key\":\"value\"}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8500/api/in/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8500",
+          "path": ["api", "in", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Status code is 200', function() {",
+              "    pm.response.to.have.status(200);",
+              "});",
+              "pm.test('Response has success status', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.status).to.eql('success');",
+              "});",
+              "pm.test('Response message is correct', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.eql('Data received and stored.');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 2: Missing id parameter",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "data",
+              "value": "{\"key\":\"value\"}",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8500/api/in/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8500",
+          "path": ["api", "in", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Response has error status', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.status).to.eql('error');",
+              "});",
+              "pm.test('Error message mentions missing parameter', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.include('Missing');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 3: Missing data parameter",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "id",
+              "value": "test456",
+              "type": "text"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8500/api/in/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8500",
+          "path": ["api", "in", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Response has error status', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.status).to.eql('error');",
+              "});",
+              "pm.test('Error message mentions missing parameter', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.message).to.include('Missing');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Test 4: Both id and data missing",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": []
+        },
+        "url": {
+          "raw": "http://localhost:8500/api/in/",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8500",
+          "path": ["api", "in", ""]
+        }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "pm.test('Response has error status', function() {",
+              "    var jsonData = pm.response.json();",
+              "    pm.expect(jsonData.status).to.eql('error');",
+              "});"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
