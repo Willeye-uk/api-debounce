@@ -9,6 +9,7 @@ ENV LUCEE_LOGGING_FORCE_LEVEL=info
 # Copy the application files into the container
 COPY . .
 
+COPY ./.CFConfig.json /opt/lucee/server/lucee-server/deploy/.CFConfig.json
 # Expose the port the app runs on
 EXPOSE 8080
 

@@ -1,0 +1,11 @@
+{
+    "pw": "bobbobbob",
+    "extensions": [
+
+        {
+            "name": "Redis",
+            "path": "/opt/lucee/extensions/redis.extension-3.0.0.51.lex",
+            "id": "60772C12-F179-D555-8E2CD2B4F7428718"
+        }
+    ]
+}

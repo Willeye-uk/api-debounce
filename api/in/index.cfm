@@ -7,8 +7,29 @@ if (isDefined('form.data') && isDefined('form.id')) {
 
     filePath = expandPath("/jsontemp/" & xKey & ".json");
 
-    // Write data to file (overwrites if exists)
-    fileWrite(filePath, data);
+    try {
+
+        // Write data to file (overwrites if exists)
+        fileWrite(filePath, data);
+        
+    } catch (exType exName) {
+
+        sleep(1000);
+        try {
+
+            // Write data to file (overwrites if exists)
+            fileWrite(filePath, data);
+        
+        } catch (exType exName) {
+
+    writeOutput(serializeJSON({status="error", message="Unable to stage file."}));
+
+        
+    }
+        
+    }
+
+
 
     // Return success response
     writeOutput(serializeJSON({status="success", message="Data received and stored."}));
