@@ -8,4 +8,4 @@
             "id": "60772C12-F179-D555-8E2CD2B4F7428718"
         }
     ]
-}
+}-javaagent:"path/to/applicationinsights-agent-3.7.5.jar"
